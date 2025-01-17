@@ -5,10 +5,10 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.synced_folder ".", "/pgcli"
+  config.vm.synced_folder ".", "/psqlplus"
 
-  pgcli_version = ENV['version']
-  pgcli_description = "Postgres CLI with autocompletion and syntax highlighting"
+  psqlplus_version = ENV['version']
+  psqlplus_description = "Postgres CLI with autocompletion and syntax highlighting"
 
   config.vm.define "debian" do |debian|
     debian.vm.box = "bento/debian-10.8"
@@ -27,12 +27,12 @@ Vagrant.configure(2) do |config|
     echo "-> Cleaning up old workspace"
     sudo rm -rf build
     mkdir -p build/usr/share
-    virtualenv build/usr/share/pgcli
-    build/usr/share/pgcli/bin/pip install /pgcli
+    virtualenv build/usr/share/psqlplus
+    build/usr/share/psqlplus/bin/pip install /psqlplus
 
     echo "-> Cleaning Virtualenv"
-    cd build/usr/share/pgcli
-    virtualenv-tools --update-path /usr/share/pgcli > /dev/null
+    cd build/usr/share/psqlplus
+    virtualenv-tools --update-path /usr/share/psqlplus > /dev/null
     cd /home/vagrant/
 
     echo "-> Removing compiled files"
@@ -40,15 +40,15 @@ Vagrant.configure(2) do |config|
     find build -iname '*.pyo' -delete
 
     echo "-> Creating PgCLI deb"
-    sudo fpm -t deb -s dir -C build -n pgcli -v #{pgcli_version} \
+    sudo fpm -t deb -s dir -C build -n psqlplus -v #{psqlplus_version} \
         -a all \
         -d libpq-dev \
         -d python-dev \
-        -p /pgcli/ \
-        --after-install /pgcli/post-install \
-        --after-remove /pgcli/post-remove \
-        --url https://github.com/dbcli/pgcli \
-        --description "#{pgcli_description}" \
+        -p /psqlplus/ \
+        --after-install /psqlplus/post-install \
+        --after-remove /psqlplus/post-remove \
+        --url https://github.com/psqlplus/psqlplus \
+        --description "#{psqlplus_description}" \
         --license 'BSD'
 
     SHELL
@@ -102,12 +102,12 @@ Vagrant.configure(2) do |config|
     echo "-> Cleaning up old workspace"
     rm -rf build
     mkdir -p build/usr/share
-    virtualenv build/usr/share/pgcli
-    build/usr/share/pgcli/bin/pip install /pgcli
+    virtualenv build/usr/share/psqlplus
+    build/usr/share/psqlplus/bin/pip install /psqlplus
 
     echo "-> Cleaning Virtualenv"
-    cd build/usr/share/pgcli
-    virtualenv-tools --update-path /usr/share/pgcli > /dev/null
+    cd build/usr/share/psqlplus
+    virtualenv-tools --update-path /usr/share/psqlplus > /dev/null
     cd /home/vagrant/
 
     echo "-> Removing compiled files"
@@ -116,15 +116,15 @@ Vagrant.configure(2) do |config|
 
     cd /home/vagrant
     echo "-> Creating PgCLI RPM"
-    /usr/local/rvm/gems/ruby-2.6.3/gems/fpm-1.12.0/bin/fpm -t rpm -s dir -C build -n pgcli -v #{pgcli_version} \
+    /usr/local/rvm/gems/ruby-2.6.3/gems/fpm-1.12.0/bin/fpm -t rpm -s dir -C build -n psqlplus -v #{psqlplus_version} \
         -a all \
         -d postgresql-devel \
         -d python-devel \
-        -p /pgcli/ \
-        --after-install /pgcli/post-install \
-        --after-remove /pgcli/post-remove \
-        --url https://github.com/dbcli/pgcli \
-        --description "#{pgcli_description}" \
+        -p /psqlplus/ \
+        --after-install /psqlplus/post-install \
+        --after-remove /psqlplus/post-remove \
+        --url https://github.com/psqlplus/psqlplus \
+        --description "#{psqlplus_description}" \
         --license 'BSD'
 
 

@@ -6,11 +6,9 @@ A REPL for Postgres
 
 This is a postgres client that does auto-completion and syntax highlighting.
 
-Home Page: http://pgcli.com
+Home Page: http://psql.plus
 
-MySQL Equivalent: http://mycli.net
-
-.. image:: screenshots/pgcli.gif
+.. image:: screenshots/psqlplus.gif
 .. image:: screenshots/image01.png
 
 Quick Start
@@ -20,44 +18,44 @@ If you already know how to install python packages, then you can simply do:
 
 ::
 
-    $ pip install -U pgcli
+    $ pip install -U psqlplus
 
     or
 
-    $ sudo apt-get install pgcli # Only on Debian based Linux (e.g. Ubuntu, Mint, etc)
-    $ brew install pgcli  # Only on macOS
+    $ sudo apt-get install psqlplus # Only on Debian based Linux (e.g. Ubuntu, Mint, etc)
+    $ brew install psqlplus  # Only on macOS
 
 If you don't know how to install python packages, please check the
 `detailed instructions`_.
 
-.. _`detailed instructions`: https://github.com/dbcli/pgcli#detailed-installation-instructions
+.. _`detailed instructions`: https://github.com/psqlplus/psqlplus#detailed-installation-instructions
 
 Usage
 -----
 
 ::
 
-    $ pgcli [database_name]
+    $ psqlplus [database_name]
 
     or
 
-    $ pgcli postgresql://[user[:password]@][netloc][:port][/dbname][?extra=value[&other=other-value]]
+    $ psqlplus postgresql://[user[:password]@][netloc][:port][/dbname][?extra=value[&other=other-value]]
 
 Examples:
 
 ::
 
-    $ pgcli local_database
+    $ psqlplus local_database
 
-    $ pgcli postgres://amjith:pa$$w0rd@example.com:5432/app_db?sslmode=verify-ca&sslrootcert=/myrootcert
+    $ psqlplus postgres://amjith:pa$$w0rd@example.com:5432/app_db?sslmode=verify-ca&sslrootcert=/myrootcert
 
 For more details:
 
 ::
 
-    $ pgcli --help
+    $ psqlplus --help
 
-    Usage: pgcli [OPTIONS] [DBNAME] [USERNAME]
+    Usage: psqlplus [OPTIONS] [DBNAME] [USERNAME]
 
     Options:
       -h, --host TEXT            Host address of the postgres database.
@@ -68,13 +66,13 @@ For more details:
       -W, --password             Force password prompt.
       -w, --no-password          Never prompt for password.
       --single-connection        Do not use a separate connection for completions.
-      -v, --version              Version of pgcli.
+      -v, --version              Version of psqlplus.
       -d, --dbname TEXT          database name to connect to.
-      --pgclirc FILE             Location of pgclirc file.
+      --psqlplusrc FILE             Location of psqlplusrc file.
       -D, --dsn TEXT             Use DSN configured into the [alias_dsn] section
-                                 of pgclirc file.
+                                 of psqlplusrc file.
       --list-dsn                 list of DSN configured into the [alias_dsn]
-                                 section of pgclirc file.
+                                 section of psqlplusrc file.
       --row-limit INTEGER        Set threshold for row limit prompt. Use 0 to
                                  disable prompt.
       --less-chatty              Skip intro on startup and goodbye on exit.
@@ -87,7 +85,7 @@ For more details:
       --warn [all|moderate|off]  Warn before running a destructive query.
       --help                     Show this message and exit.
 
-``pgcli`` also supports many of the same `environment variables`_ as ``psql`` for login options (e.g. ``PGHOST``, ``PGPORT``, ``PGUSER``, ``PGPASSWORD``, ``PGDATABASE``).
+``psqlplus`` also supports many of the same `environment variables`_ as ``psql`` for login options (e.g. ``PGHOST``, ``PGPORT``, ``PGUSER``, ``PGPASSWORD``, ``PGDATABASE``).
 
 The SSL-related environment variables are also supported, so if you need to connect a postgres database via ssl connection, you can set set environment like this:
 
@@ -97,14 +95,14 @@ The SSL-related environment variables are also supported, so if you need to conn
     export PGSSLCERT="/your-path-to-certs/client.crt"
     export PGSSLKEY="/your-path-to-keys/client.key"
     export PGSSLROOTCERT="/your-path-to-ca/ca.crt"
-    pgcli -h localhost -p 5432 -U username postgres
+    psqlplus -h localhost -p 5432 -U username postgres
 
 .. _environment variables: https://www.postgresql.org/docs/current/libpq-envars.html
 
 Features
 --------
 
-The `pgcli` is written using prompt_toolkit_.
+The `psqlplus` is written using prompt_toolkit_.
 
 * Auto-completes as you type for SQL keywords as well as tables and
   columns in the database.
@@ -123,7 +121,7 @@ The `pgcli` is written using prompt_toolkit_.
 
 Config
 ------
-A config file is automatically created at ``~/.config/pgcli/config`` at first launch.
+A config file is automatically created at ``~/.config/psqlplus/config`` at first launch.
 See the file itself for a description of all available options.
 
 Contributions:
@@ -133,11 +131,11 @@ If you're interested in contributing to this project, first of all I would like
 to extend my heartfelt gratitude. I've written a small doc to describe how to
 get this running in a development setup.
 
-https://github.com/dbcli/pgcli/blob/master/DEVELOP.rst
+https://github.com/psqlplus/psqlplus/blob/master/DEVELOP.rst
 
 Please feel free to reach out to us if you need help.
-* Amjith, pgcli author: amjith.r@gmail.com, Twitter: `@amjithr <http://twitter.com/amjithr>`_
-* Irina, pgcli maintainer: i.chernyavska@gmail.com, Twitter: `@irinatruong <http://twitter.com/irinatruong>`_
+* Amjith, psqlplus author: amjith.r@gmail.com, Twitter: `@amjithr <http://twitter.com/amjithr>`_
+* Irina, psqlplus maintainer: i.chernyavska@gmail.com, Twitter: `@irinatruong <http://twitter.com/irinatruong>`_
 
 Detailed Installation Instructions:
 -----------------------------------
@@ -145,15 +143,15 @@ Detailed Installation Instructions:
 macOS:
 ======
 
-The easiest way to install pgcli is using Homebrew.
+The easiest way to install psqlplus is using Homebrew.
 
 ::
 
-    $ brew install pgcli
+    $ brew install psqlplus
 
 Done!
 
-Alternatively, you can install ``pgcli`` as a python package using a package
+Alternatively, you can install ``psqlplus`` as a python package using a package
 manager called called ``pip``. You will need postgres installed on your system
 for this to work.
 
@@ -167,14 +165,14 @@ If it is installed then you can do:
 
 ::
 
-    $ pip install pgcli
+    $ pip install psqlplus
 
 If that fails due to permission issues, you might need to run the command with
 sudo permissions.
 
 ::
 
-    $ sudo pip install pgcli
+    $ sudo pip install psqlplus
 
 If pip is not installed check if easy_install is available on the system.
 
@@ -182,7 +180,7 @@ If pip is not installed check if easy_install is available on the system.
 
     $ which easy_install
 
-    $ sudo easy_install pgcli
+    $ sudo easy_install psqlplus
 
 Linux:
 ======
@@ -206,7 +204,7 @@ might look something like:
 
     $ sudo yum install python-pip  # RHEL, Centos, Fedora etc
 
-``pgcli`` requires python-dev, libpq-dev and libevent-dev packages. You can
+``psqlplus`` requires python-dev, libpq-dev and libevent-dev packages. You can
 install these via your operating system package manager.
 
 
@@ -218,30 +216,30 @@ install these via your operating system package manager.
 
     $ sudo yum install python-devel postgresql-devel
 
-Then you can install pgcli:
+Then you can install psqlplus:
 
 ::
 
-    $ sudo pip install pgcli
+    $ sudo pip install psqlplus
 
 
 Docker
 ======
 
-Pgcli can be run from within Docker. This can be useful to try pgcli without
+Pgcli can be run from within Docker. This can be useful to try psqlplus without
 installing it, or any dependencies, system-wide.
 
 To build the image:
 
 ::
 
-    $ docker build -t pgcli .
+    $ docker build -t psqlplus .
 
 To create a container from the image:
 
 ::
 
-    $ docker run --rm -ti pgcli pgcli <ARGS>
+    $ docker run --rm -ti psqlplus psqlplus <ARGS>
 
 To access postgresql databases listening on localhost, make sure to run the
 docker in "host net mode". E.g. to access a database called "foo" on the
@@ -249,22 +247,22 @@ postgresql server running on localhost:5432 (the standard port):
 
 ::
 
-    $ docker run --rm -ti --net host pgcli pgcli -h localhost foo
+    $ docker run --rm -ti --net host psqlplus psqlplus -h localhost foo
 
 To connect to a locally running instance over a unix socket, bind the socket to
 the docker container:
 
 ::
 
-    $ docker run --rm -ti -v /var/run/postgres:/var/run/postgres pgcli pgcli foo
+    $ docker run --rm -ti -v /var/run/postgres:/var/run/postgres psqlplus psqlplus foo
 
 
 IPython
 =======
 
 Pgcli can be run from within `IPython <https://ipython.org>`_ console. When working on a query,
-it may be useful to drop into a pgcli session without leaving the IPython console, iterate on a
-query, then quit pgcli to find the query results in your IPython workspace.
+it may be useful to drop into a psqlplus session without leaving the IPython console, iterate on a
+query, then quit psqlplus to find the query results in your IPython workspace.
 
 Assuming you have IPython installed:
 
@@ -272,20 +270,20 @@ Assuming you have IPython installed:
 
     $ pip install ipython-sql
 
-After that, run ipython and load the ``pgcli.magic`` extension:
+After that, run ipython and load the ``psqlplus.magic`` extension:
 
 ::
 
     $ ipython
 
-    In [1]: %load_ext pgcli.magic
+    In [1]: %load_ext psqlplus.magic
 
 
 Connect to a database and construct a query:
 
 ::
 
-    In [2]: %pgcli postgres://someone@localhost:5432/world
+    In [2]: %psqlplus postgres://someone@localhost:5432/world
     Connected: someone@world
     someone@localhost:world> select * from city c where countrycode = 'USA' and population > 1000000;
     +------+--------------+---------------+--------------+--------------+
@@ -305,7 +303,7 @@ Connect to a database and construct a query:
     Time: 0.003s
 
 
-Exit out of pgcli session with ``Ctrl + D`` and find the query results:
+Exit out of psqlplus session with ``Ctrl + D`` and find the query results:
 
 ::
 
@@ -330,7 +328,7 @@ choice:
 
     In [3]: my_result = _
 
-Pgcli dropped support for Python<3.8 as of 4.0.0. If you need it, install ``pgcli <= 4.0.0``.
+Pgcli dropped support for Python<3.8 as of 4.0.0. If you need it, install ``psqlplus <= 4.0.0``.
 
 Thanks:
 -------
@@ -350,21 +348,21 @@ interface to Postgres database.
 Thanks to all the beta testers and contributors for your time and patience. :)
 
 
-.. |Build Status| image:: https://github.com/dbcli/pgcli/actions/workflows/ci.yml/badge.svg?branch=main
-    :target: https://github.com/dbcli/pgcli/actions/workflows/ci.yml
+.. |Build Status| image:: https://github.com/psqlplus/psqlplus/actions/workflows/ci.yml/badge.svg?branch=main
+    :target: https://github.com/psqlplus/psqlplus/actions/workflows/ci.yml
 
-.. |CodeCov| image:: https://codecov.io/gh/dbcli/pgcli/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/dbcli/pgcli
+.. |CodeCov| image:: https://codecov.io/gh/psqlplus/psqlplus/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/psqlplus/psqlplus
    :alt: Code coverage report
 
-.. |Landscape| image:: https://landscape.io/github/dbcli/pgcli/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/dbcli/pgcli/master
+.. |Landscape| image:: https://landscape.io/github/psqlplus/psqlplus/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/psqlplus/psqlplus/master
    :alt: Code Health
 
-.. |PyPI| image:: https://img.shields.io/pypi/v/pgcli.svg
-    :target: https://pypi.python.org/pypi/pgcli/
+.. |PyPI| image:: https://img.shields.io/pypi/v/psqlplus.svg
+    :target: https://pypi.python.org/pypi/psqlplus/
     :alt: Latest Version
 
 .. |netlify| image:: https://api.netlify.com/api/v1/badges/3a0a14dd-776d-445d-804c-3dd74fe31c4e/deploy-status
-     :target: https://app.netlify.com/sites/pgcli/deploys
+     :target: https://app.netlify.com/sites/psqlplus/deploys
      :alt: Netlify
